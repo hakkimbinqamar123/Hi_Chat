@@ -4,62 +4,49 @@ import { MessageCircleIcon } from "lucide-react";
 
 const FriendCard = ({ friend }) => {
   return (
-    <div
-      className="glass glass-hover rounded-2xl overflow-hidden"
-      style={{ border: "1px solid rgba(255,255,255,0.08)" }}
-    >
-      <div className="p-5">
-        {/* Avatar + Name */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="relative flex-shrink-0">
+    <div className="neo-box neo-shadow p-5 relative mt-4 h-full flex flex-col">
+      {/* ONLINE Badge */}
+      <div className="absolute -top-3 -right-3 bg-[var(--neo-pink)] border-[2px] border-[var(--neo-border)] px-3 py-0.5 text-[10px] font-bold uppercase tracking-wider rotate-6 z-10">
+        Online
+      </div>
+
+      <div className="flex items-center gap-4 mb-6">
+        {/* Avatar Square */}
+        <div className="w-14 h-14 bg-[var(--neo-yellow)] border-[3px] border-[var(--neo-border)] flex-shrink-0 overflow-hidden">
+          {friend.profilePic && (
             <img
               src={friend.profilePic}
               alt={friend.fullName}
-              className="w-12 h-12 rounded-full object-cover ring-2"
-              style={{ ringColor: "rgba(139,92,246,0.4)" }}
+              className="w-full h-full object-cover grayscale mix-blend-multiply"
             />
-            <span
-              className="absolute bottom-0 right-0 w-3 h-3 rounded-full border-2"
-              style={{ background: "#10b981", borderColor: "#07070f" }}
-            />
-          </div>
-          <div className="min-w-0">
-            <h3 className="font-semibold text-white truncate">{friend.fullName}</h3>
-          </div>
+          )}
         </div>
-
-        {/* Language badges */}
-        <div className="flex flex-wrap gap-2 mb-4">
-          <span
-            className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium"
-            style={{ background: "rgba(139,92,246,0.2)", color: "#c4b5fd", border: "1px solid rgba(139,92,246,0.3)" }}
-          >
-            {getLanguageFlag(friend.nativeLanguage)}
-            {friend.nativeLanguage}
-          </span>
-          <span
-            className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium"
-            style={{ background: "rgba(6,182,212,0.15)", color: "#67e8f9", border: "1px solid rgba(6,182,212,0.3)" }}
-          >
-            {getLanguageFlag(friend.learningLanguage)}
-            {friend.learningLanguage}
-          </span>
+        
+        {/* Name */}
+        <div className="min-w-0 flex-1">
+          <h3 className="neo-heading text-xl truncate">{friend.fullName}</h3>
+          <p className="text-[11px] font-medium text-black/60 uppercase">Language partner</p>
         </div>
-
-        {/* Message button */}
-        <Link
-          to={`/chat/${friend._id}`}
-          className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl text-sm font-semibold transition-all duration-200"
-          style={{
-            background: "linear-gradient(135deg,#8b5cf6,#ec4899)",
-            color: "#fff",
-            boxShadow: "0 4px 15px rgba(139,92,246,0.3)",
-          }}
-        >
-          <MessageCircleIcon className="w-4 h-4" />
-          Message
-        </Link>
       </div>
+
+      {/* Language badges */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        <span className="flex items-center gap-1 text-[10px] px-2 py-1 font-bold uppercase border-[2px] border-[var(--neo-border)] bg-[var(--neo-yellow)]">
+          {getLanguageFlag(friend.nativeLanguage)} {friend.nativeLanguage}
+        </span>
+        <span className="flex items-center gap-1 text-[10px] px-2 py-1 font-bold uppercase border-[2px] border-[var(--neo-border)] bg-[var(--neo-yellow)]">
+          {getLanguageFlag(friend.learningLanguage)} {friend.learningLanguage}
+        </span>
+      </div>
+
+      {/* Message button */}
+      <Link
+        to={`/chat/${friend._id}`}
+        className="flex items-center justify-center gap-2 w-full py-3 neo-btn bg-[#111111] text-white neo-shadow-blue neo-shadow-hover mt-auto text-xs"
+      >
+        <MessageCircleIcon className="w-4 h-4 fill-white" />
+        SEND MESSAGE
+      </Link>
     </div>
   );
 };
@@ -75,7 +62,7 @@ export function getLanguageFlag(language) {
       <img
         src={`https://flagcdn.com/24x18/${countryCode}.png`}
         alt={`${langLower} flag`}
-        className="h-3 inline-block"
+        className="h-3 inline-block grayscale contrast-125"
       />
     );
   }

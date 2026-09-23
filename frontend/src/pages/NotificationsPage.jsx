@@ -25,31 +25,25 @@ const NotificationsPage = () => {
     <div className="p-4 sm:p-6 lg:p-8">
       <div className="container mx-auto max-w-3xl space-y-8">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-white">Notifications</h1>
-          <p className="text-slate-400 text-sm mt-1">
+          <h1 className="text-4xl sm:text-5xl font-bold text-black neo-heading tracking-tighter uppercase">Notifications</h1>
+          <p className="text-black font-bold uppercase text-sm mt-2 border-2 border-black inline-block px-3 py-1 bg-[var(--neo-yellow)]">
             {incomingRequests.length + acceptedRequests.length} updates
           </p>
         </div>
 
         {isLoading ? (
           <div className="flex justify-center py-20">
-            <div
-              className="w-10 h-10 rounded-full border-4 border-transparent animate-spin"
-              style={{ borderTopColor: "#8b5cf6", borderRightColor: "#ec4899" }}
-            />
+            <div className="w-12 h-12 bg-[var(--neo-yellow)] border-4 border-black animate-spin neo-shadow" />
           </div>
         ) : (
           <>
             {/* Incoming Friend Requests */}
             {incomingRequests.length > 0 && (
-              <section className="space-y-3">
-                <h2 className="flex items-center gap-2 text-lg font-semibold text-white">
-                  <UserCheckIcon className="w-5 h-5 text-violet-400" />
+              <section className="space-y-4">
+                <h2 className="flex items-center gap-2 text-2xl font-bold text-black neo-heading tracking-tighter uppercase">
+                  <UserCheckIcon className="w-6 h-6 stroke-[3]" />
                   Friend Requests
-                  <span
-                    className="ml-1 px-2 py-0.5 rounded-full text-xs font-bold"
-                    style={{ background: "rgba(139,92,246,0.3)", color: "#c4b5fd" }}
-                  >
+                  <span className="ml-2 px-3 py-1 bg-[var(--neo-pink)] border-2 border-black text-black text-xs font-bold neo-shadow">
                     {incomingRequests.length}
                   </span>
                 </h2>
@@ -57,30 +51,22 @@ const NotificationsPage = () => {
                 {incomingRequests.map((request) => (
                   <div
                     key={request._id}
-                    className="glass glass-hover rounded-2xl p-4"
-                    style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+                    className="bg-white border-[3px] border-black neo-shadow p-4 sm:p-6"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                      <div className="flex items-center gap-4">
                         <img
                           src={request.sender.profilePic}
                           alt={request.sender.fullName}
-                          className="w-12 h-12 rounded-full object-cover"
-                          style={{ boxShadow: "0 0 0 2px rgba(139,92,246,0.3)" }}
+                          className="w-16 h-16 object-cover border-[3px] border-black neo-shadow"
                         />
                         <div>
-                          <h3 className="font-semibold text-white">{request.sender.fullName}</h3>
-                          <div className="flex flex-wrap gap-1.5 mt-1">
-                            <span
-                              className="text-xs px-2 py-0.5 rounded-full"
-                              style={{ background: "rgba(139,92,246,0.2)", color: "#c4b5fd", border: "1px solid rgba(139,92,246,0.3)" }}
-                            >
+                          <h3 className="text-xl font-bold text-black neo-heading uppercase tracking-tighter">{request.sender.fullName}</h3>
+                          <div className="flex flex-wrap gap-2 mt-2">
+                            <span className="text-xs px-2 py-1 font-bold uppercase border-2 border-black bg-[var(--neo-yellow)] text-black">
                               Native: {request.sender.nativeLanguage}
                             </span>
-                            <span
-                              className="text-xs px-2 py-0.5 rounded-full"
-                              style={{ background: "rgba(6,182,212,0.15)", color: "#67e8f9", border: "1px solid rgba(6,182,212,0.3)" }}
-                            >
+                            <span className="text-xs px-2 py-1 font-bold uppercase border-2 border-black bg-[var(--neo-blue)] text-black">
                               Learning: {request.sender.learningLanguage}
                             </span>
                           </div>
@@ -88,18 +74,12 @@ const NotificationsPage = () => {
                       </div>
 
                       <button
-                        className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 flex-shrink-0"
-                        style={{
-                          background: "linear-gradient(135deg,#8b5cf6,#ec4899)",
-                          color: "#fff",
-                          boxShadow: "0 4px 15px rgba(139,92,246,0.3)",
-                          opacity: isPending ? 0.6 : 1,
-                        }}
+                        className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 border-[3px] border-black bg-[var(--neo-green)] text-black text-sm font-bold uppercase neo-shadow-hover transition-transform"
                         onClick={() => acceptRequestMutation(request._id)}
                         disabled={isPending}
                       >
-                        <CheckIcon className="w-4 h-4" />
-                        Accept
+                        <CheckIcon className="w-5 h-5 stroke-[3]" />
+                        {isPending ? "Accepting..." : "Accept"}
                       </button>
                     </div>
                   </div>
@@ -109,39 +89,35 @@ const NotificationsPage = () => {
 
             {/* Accepted Requests (new connections) */}
             {acceptedRequests.length > 0 && (
-              <section className="space-y-3">
-                <h2 className="flex items-center gap-2 text-lg font-semibold text-white">
-                  <BellIcon className="w-5 h-5 text-emerald-400" />
+              <section className="space-y-4 mt-12">
+                <h2 className="flex items-center gap-2 text-2xl font-bold text-black neo-heading tracking-tighter uppercase">
+                  <BellIcon className="w-6 h-6 stroke-[3]" />
                   New Connections
                 </h2>
 
                 {acceptedRequests.map((notification) => (
                   <div
                     key={notification._id}
-                    className="glass rounded-2xl p-4"
-                    style={{ border: "1px solid rgba(16,185,129,0.2)" }}
+                    className="bg-white border-[3px] border-black neo-shadow p-4 sm:p-6"
                   >
-                    <div className="flex items-start gap-3">
+                    <div className="flex items-start gap-4">
                       <img
                         src={notification.recipient.profilePic}
                         alt={notification.recipient.fullName}
-                        className="w-10 h-10 rounded-full object-cover mt-0.5"
+                        className="w-14 h-14 object-cover border-[3px] border-black neo-shadow"
                       />
                       <div className="flex-1">
-                        <h3 className="font-semibold text-white">{notification.recipient.fullName}</h3>
-                        <p className="text-sm text-slate-400 my-1">
+                        <h3 className="text-xl font-bold text-black neo-heading uppercase tracking-tighter">{notification.recipient.fullName}</h3>
+                        <p className="text-sm text-black font-bold uppercase mt-1">
                           {notification.recipient.fullName} accepted your friend request
                         </p>
-                        <p className="text-xs text-slate-500 flex items-center gap-1">
-                          <ClockIcon className="w-3 h-3" />
+                        <p className="text-xs text-black font-bold uppercase mt-2 flex items-center gap-1 bg-[var(--neo-pink)] border-2 border-black inline-flex px-2 py-1">
+                          <ClockIcon className="w-4 h-4 stroke-[3]" />
                           Recently
                         </p>
                       </div>
-                      <span
-                        className="flex items-center gap-1 text-xs px-2.5 py-1 rounded-full font-medium flex-shrink-0"
-                        style={{ background: "rgba(16,185,129,0.2)", color: "#34d399", border: "1px solid rgba(16,185,129,0.3)" }}
-                      >
-                        <MessageSquareIcon className="w-3 h-3" />
+                      <span className="hidden sm:flex items-center gap-1 text-xs px-3 py-1 font-bold uppercase border-2 border-black bg-[var(--neo-green)] text-black neo-shadow">
+                        <MessageSquareIcon className="w-4 h-4 stroke-[3]" />
                         New Friend
                       </span>
                     </div>
@@ -152,13 +128,12 @@ const NotificationsPage = () => {
 
             {/* Empty state */}
             {incomingRequests.length === 0 && acceptedRequests.length === 0 && (
-              <div
-                className="glass rounded-2xl p-12 text-center"
-                style={{ border: "1px solid rgba(255,255,255,0.08)" }}
-              >
-                <div className="text-5xl mb-4">🔔</div>
-                <h3 className="text-lg font-semibold text-white mb-2">All caught up!</h3>
-                <p className="text-slate-400 text-sm">No new notifications right now</p>
+              <div className="bg-[var(--neo-yellow)] border-[4px] border-black neo-shadow p-12 text-center relative overflow-hidden">
+                <div className="text-6xl mb-6 relative z-10">🔔</div>
+                <h3 className="text-3xl font-bold text-black neo-heading uppercase tracking-tighter mb-4 relative z-10">All caught up!</h3>
+                <p className="text-black font-bold uppercase text-lg border-2 border-black inline-block px-4 py-2 bg-white relative z-10">
+                  No new notifications right now
+                </p>
               </div>
             )}
           </>

@@ -1,75 +1,50 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
-import { BellIcon, LogOutIcon, MessageCircleIcon } from "lucide-react";
+import { MessageSquareIcon, PowerIcon, SparklesIcon } from "lucide-react";
 import useLogout from "../hooks/useLogout";
 
 const Navbar = () => {
   const { authUser } = useAuthUser();
-  const location = useLocation();
-  const isChatPage = location.pathname?.startsWith("/chat");
   const { logoutMutation } = useLogout();
 
   return (
-    <nav
-      className="sticky top-0 z-30 h-16 flex items-center px-4 sm:px-6"
-      style={{
-        background: "rgba(10,10,20,0.8)",
-        backdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
-      }}
-    >
-      <div className="flex items-center justify-between w-full">
-        {/* Logo — only on chat page */}
-        {isChatPage && (
-          <Link to="/" className="flex items-center gap-2.5">
-            <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center"
-              style={{ background: "linear-gradient(135deg,#8b5cf6,#ec4899)" }}
-            >
-              <MessageCircleIcon className="w-4 h-4 text-white" />
-            </div>
-            <span
-              className="text-xl font-bold"
-              style={{
-                background: "linear-gradient(135deg,#8b5cf6,#ec4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Hi Chat!
-            </span>
-          </Link>
-        )}
+    <nav className="sticky top-0 z-30 h-16 w-full flex items-center justify-center bg-[#111111] text-white">
+      <div className="flex items-center justify-between w-full px-4 sm:px-8">
+        
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-8 h-8 bg-[var(--neo-yellow)] border-[2px] border-white flex items-center justify-center neo-shadow-hover transition-transform group-hover:-translate-y-0.5">
+            <MessageSquareIcon className="w-4 h-4 text-black fill-black" />
+          </div>
+          <span className="neo-heading text-xl tracking-tight" style={{ color: "white" }}>HI Chat!</span>
+        </Link>
 
-        <div className="flex items-center gap-2 ml-auto">
-          {/* Notifications bell */}
-          <Link to="/notifications">
-            <button
-              className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:bg-white/10"
-              title="Notifications"
-            >
-              <BellIcon className="w-5 h-5 text-slate-400" />
+        {/* Right side actions */}
+        <div className="flex items-center gap-4">
+          
+          {/* AI Chat / Messages */}
+          <Link to="/chat/gemini-ai-bot" title="Chat with AI">
+            <button className="h-9 w-10 border border-white flex items-center justify-center hover:bg-white hover:text-black transition-colors">
+              <SparklesIcon className="w-4 h-4" />
             </button>
           </Link>
 
-          {/* Avatar → Profile */}
-          <Link to="/profile" title="Edit profile">
-            <div
-              className="w-9 h-9 rounded-full overflow-hidden ring-2 cursor-pointer transition-all duration-200 hover:ring-violet-500"
-              style={{ ringColor: "rgba(139,92,246,0.4)" }}
-            >
-              <img
-                src={authUser?.profilePic}
-                alt="User Avatar"
-                className="w-full h-full object-cover"
-              />
+          {/* Profile */}
+          <Link to="/profile" title="Profile">
+            <div className="h-9 border border-white flex items-center px-2 gap-2 cursor-pointer hover:bg-white hover:text-black transition-colors group">
+              <div className="w-5 h-5 bg-[var(--neo-pink)]">
+                {/* No image in the mockup, just a pink square, but we'll show their pic if available */}
+                {authUser?.profilePic ? (
+                  <img src={authUser.profilePic} className="w-full h-full object-cover grayscale group-hover:grayscale-0" alt="Avatar" />
+                ) : null}
+              </div>
+              <span className="text-sm font-bold truncate max-w-[100px]">{authUser?.fullName || "hakkim"}</span>
             </div>
           </Link>
 
           {/* Logout */}
           <button
-            className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 hover:bg-white/10"
+            className="h-9 w-10 border border-white flex items-center justify-center hover:bg-white hover:text-black transition-colors"
             onClick={() => {
               if (window.confirm("Are you sure you want to logout?")) {
                 logoutMutation();
@@ -77,8 +52,9 @@ const Navbar = () => {
             }}
             title="Logout"
           >
-            <LogOutIcon className="w-5 h-5 text-slate-400" />
+            <PowerIcon className="w-4 h-4" />
           </button>
+          
         </div>
       </div>
     </nav>
