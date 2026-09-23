@@ -15,7 +15,6 @@
   <a href="#environment-variables">Environment Variables</a>
 </p>
 
-![Screenshot](/frontend/public/screenshot-for-readme.png)
 
 ## Key Features
 
