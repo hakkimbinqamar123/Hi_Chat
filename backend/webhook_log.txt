@@ -1,0 +1,131 @@
+[2026-09-23T09:18:28.231Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=hlo, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:18:28.867Z] Bot not in chat. Members: 0,1
+[2026-09-23T09:19:29.271Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=hi, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:19:30.317Z] Error: Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent: [404 Not Found] This model models/gemini-2.5-flash is no longer available to new users. Please update your code to use models/gemini-3.6-flash for the latest features and improvements. We recommend you to use the Interactions API (https://ai.google.dev/gemini-api/docs/get-started).
+    at handleResponseNotOk (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async handleStreamWebhook (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/src/controllers/ai.controller.js:63:24)
+[2026-09-23T09:20:20.807Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=hlo, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:20:23.666Z] Webhook hit: type=message.new, user=gemini-ai-bot, msg=Hello! How can I help you today?, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:20:23.944Z] Replied successfully
+[2026-09-23T09:20:38.492Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=create an image of a dog, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:20:47.289Z] Webhook hit: type=message.new, user=gemini-ai-bot, msg=, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:20:47.534Z] Replied successfully
+[2026-09-23T09:21:13.166Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=no image ?, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:21:19.034Z] Error: Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [503 Service Unavailable] This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+    at handleResponseNotOk (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async handleStreamWebhook (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/src/controllers/ai.controller.js:63:24)
+[2026-09-23T09:23:38.166Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=what is recurssion in java, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:23:51.956Z] Webhook hit: type=message.new, user=gemini-ai-bot, msg=In Java, **recursion** is a programming technique where a **method calls itself** to solve a problem. 
+
+Instead of solving a large, complex problem all at once, recursion breaks the problem down into smaller, similar sub-problems until they become small enough to be solved easily.
+
+---
+
+### The Two Essential Parts of Recursion
+
+Every recursive method **must** have two main components to work properly:
+
+1. **Base Case (The Stop Condition):** The condition under which the method stops calling itself. Without a base case, the program will call itself endlessly, leading to a `java.lang.StackOverflowError`.
+2. **Recursive Case:** The part of the method where it calls itself with a modified (usually smaller) argument, moving closer to the base case.
+
+---
+
+### A Simple Example: Calculating a Factorial
+
+The mathematical factorial of $n$ ($n!$) is calculated as:
+$5! = 5 \times 4 \times 3 \times 2 \times 1 = 120$
+
+Notice how $5!$ can also be written as $5 \times 4!$. This is a recursive relationship.
+
+#### Java Code:
+
+```java
+public class RecursionExample {
+
+    // Recursive method to calculate factorial
+    public static int factorial(int n) {
+        // 1. BASE CASE: when n is 1 or less, stop recursing
+        if (n <= 1) {
+            return 1;
+        }
+        
+        // 2. RECURSIVE CASE: method calls itself with (n - 1)
+        return n * factorial(n - 1);
+    }
+
+    public static void main(String[] args) {
+        int number = 5;
+        int result = factorial(number);
+        System.out.println("Factorial of " + number + " is: " + result); 
+        // Output: Factorial of 5 is: 120
+    }
+}
+```
+
+---
+
+### How Recursion Works (The "Call Stack")
+
+When `factorial(3)` is called, Java uses an internal memory structure called the **Call Stack** to keep track of each method call:
+
+1. `factorial(3)` is called $\rightarrow$ returns $3 \times$ `factorial(2)` *(waits)*
+2. `factorial(2)` is called $\rightarrow$ returns $2 \times$ `factorial(1)` *(waits)*
+3. `factorial(1)` is called $\rightarrow$ Hits **Base Case**, returns `1`.
+
+Now, the stack unwinds in reverse order:
+* `factorial(1)` returns `1`
+* `factorial(2)` receives `1`, calculates $2 \times 1 = 2$, and returns `2`
+* `factorial(3)` receives `2`, calculates $3 \times 2 = 6$, and returns `6`
+
+---
+
+### Recursion vs. Iteration (Loops)
+
+Any problem that can be solved with recursion can also be solved using a loop (`for` or `while`). 
+
+| Feature | Recursion | Iteration (Loops) |
+| :--- | :--- | :--- |
+| **Code Structure** | Often shorter and cleaner. | Can require more boilerplate code. |
+| **Memory Usage** | High (uses stack memory for each call). | Low (uses fixed memory). |
+| **Speed** | Slightly slower due to method call overhead. | Faster. |
+| **Best Used For** | Tree traversals, Graph problems, Divide-and-Conquer algorithms (Merge Sort). | Simple counting, iterating through arrays/lists. |
+
+---
+
+### Common Pitfall: `StackOverflowError`
+
+If you forget to write a base case, or if your recursive step doesn't move toward the base case, Java will throw a `StackOverflowError`.
+
+```java
+// BAD CODE: No base case
+public static void printNumber(int n) {
+    System.out.println(n);
+    printNumber(n - 1); // Will run forever until memory runs out!
+}
+```
+
+### Summary
+* **Recursion** means a method calling itself.
+* Always define a **Base Case** to prevent infinite loops.
+* Recursion is best suited for complex hierarchical data structures like trees and graphs, while loops are usually better for simple, repetitive tasks., channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:23:52.230Z] Replied successfully
+[2026-09-23T09:24:18.185Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=create an image of a house, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:24:23.517Z] Error: Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent: [503 Service Unavailable] This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+    at handleResponseNotOk (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async handleStreamWebhook (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/src/controllers/ai.controller.js:63:24)
+[2026-09-23T09:25:22.402Z] Webhook hit: type=message.new, user=6ab37c8b838d30eb03d05c19, msg=create an image of a house, channel=6ab37c8b838d30eb03d05c19-gemini-ai-bot
+[2026-09-23T09:25:39.933Z] Error: Error: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent: [503 Service Unavailable] This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+    at handleResponseNotOk (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:432:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async makeRequest (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:401:9)
+    at async generateContent (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/node_modules/@google/generative-ai/dist/index.mjs:865:22)
+    at async handleStreamWebhook (file:///C:/Users/Hakeem/Downloads/streamify-video-calls-master/streamify-video-calls-master/backend/src/controllers/ai.controller.js:63:24)
