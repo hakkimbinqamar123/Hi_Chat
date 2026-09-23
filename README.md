@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <img src="./frontend/public/vite.svg" alt="Hi Chat" width="120">
+  
   <br>
   Hi Chat: Fullstack Video & Messaging Platform
   <br>
